@@ -31,12 +31,15 @@ Instantiate a new `InfiniScroll` object after your Backbone view has been render
     options = {
       success: function(){ },
       error: function(){ },
+      fetchHasMoreResults: undefined,
+      buildQueryParams: undefined,
       target: $(window),
       param: "until",
       extraParams: {},
       pageSizeParam: "page_size",
       untilAttr: "id",
       pageSize: collection.length,
+      collectionPageSize: undefined
       scrollOffset: 100,
       remove: false,
       strict: false,
@@ -45,11 +48,14 @@ Instantiate a new `InfiniScroll` object after your Backbone view has been render
 
 * `success` - Success callback function called when `collection.fetch` is successful
 * `error` - Error callback function called when `collection.fetch` raises error
+* `fetchHasMoreResults` - Optional function to implement custom more results logic
+* `buildQueryParams` - Optional function to implement custom fetch params object
 * `target` - Target element to watch scroll. Change this if you have an internal scrolling element to infinite scroll.
 * `param` - GET param used when `collection.fetch` is called
 * `extraParams` - extra GET params used when `collection.fetch` is called
 * `untilAttr` - The GET param attribute used when `collection.fetch` is called. Finds last record in collection and uses this param as key. Can be a function name on the model, which can be used as a computed property.
 * `pageSize` - Used internally to determine when fetching of pages is completed.
+* `collectionPageSize` - Size of the initial size of the collection, when set it will set virtual pagesize to half that size and starts at page 2.
 * `pageSizeParam` - GET param used to send page size when `collection.fetch` is called.
 * `scrollOffset` - Pixel count from bottom of page to offset the scroll for when to trigger `collection.fetch`
 * `remove` - Passed to collection fetch to add new records to the collection without removing existing ones
